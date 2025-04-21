@@ -47,7 +47,7 @@ function FloatingButtons() {
           </a>
 
           {/* Email Button */}
-          <a href="mailto:maatifelix001@gmail.com" style={{ ...buttonStyle, backgroundColor: "#ff5252" }}>
+          <a href="antonywambugu668@gmail.com" style={{ ...buttonStyle, backgroundColor: "#ff5252" }}>
             📧
           </a>
         </>

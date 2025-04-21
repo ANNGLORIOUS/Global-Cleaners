@@ -1,62 +1,99 @@
-import React from "react";
+import React, { useState } from "react";
+
+const servicesData = [
+  {
+    category: "Domestic Cleaning",
+    details: [
+      "Regular house cleaning",
+      "Dusting services",
+      "Deep cleaning",
+      "End-of-tenancy cleaning",
+      "Carpet and upholstery cleaning",
+      "Window cleaning",
+      "Post-renovation cleaning",
+    ],
+  },
+  {
+    category: "Commercial Cleaning",
+    details: [
+      "Office cleaning",
+      "Retail cleaning",
+      "Healthcare facility cleaning",
+      "Industrial cleaning",
+      "Specialized cleaning",
+    ],
+  },
+  {
+    category: "Fumigation and Pest Control Services",
+    details: [
+      "Termite control",
+      "Bedbug extermination",
+      "Cockroach and ant elimination",
+      "Mosquito control",
+      "Rodent management",
+    ],
+  },
+  {
+    category: "Car Interior Cleaning",
+    details: [
+      "Vacuuming: Seats, carpets, mats, and trunk",
+      "Leather treatment: Cleaning and conditioning",
+      "Dashboard and console cleaning",
+      "Odor removal: Neutralizing unpleasant smells",
+    ],
+  },
+  {
+    category: "Dusting Services",
+    details: [
+      "Furniture dusting",
+      "Electronic dusting",
+      "Baseboards, frames, and window sills",
+      "Ceiling fans, vents, and lighting fixtures",
+    ],
+  },
+  {
+    category: "Additional Specialized Services",
+    details: [
+      "Sanitization and Disinfection",
+      "Event Cleaning",
+      "External Cleaning",
+      "Move-In/Move-Out Cleaning",
+    ],
+  },
+];
 
 function Services() {
+  const [search, setSearch] = useState("");
+
+  const filteredServices = servicesData.filter((service) =>
+    service.category.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <section>
       <h2>Our Services</h2>
 
-      <h3>1. Domestic Cleaning</h3>
-      <ul>
-        <li>Regular house cleaning: Dusting, vacuuming, mopping, and thorough cleaning of bathrooms and kitchens.</li>
-        <li>Dusting services: Removing dust from furniture, shelves, baseboards, light fixtures, and other surfaces.</li>
-        <li>Deep cleaning: Detailed cleaning of hard-to-reach areas.</li>
-        <li>End-of-tenancy cleaning: Preparing properties for new tenants.</li>
-        <li>Carpet and upholstery cleaning: Removing stains and refreshing fabrics.</li>
-        <li>Window cleaning: Cleaning interior windows and glass surfaces.</li>
-        <li>Post-renovation cleaning: Clearing dust after construction.</li>
-      </ul>
+      <input
+        type="text"
+        placeholder="Search category..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-      <h3>2. Commercial Cleaning</h3>
-      <ul>
-        <li>Office cleaning: Desks, communal areas, restrooms, and kitchens.</li>
-        <li>Retail cleaning: Shop floors, displays, and fitting rooms.</li>
-        <li>Healthcare facility cleaning: Sanitization of clinics and hospitals.</li>
-        <li>Industrial cleaning: Warehouses, factories, and machinery.</li>
-        <li>Specialized cleaning: High-rise windows, data centers, etc.</li>
-      </ul>
+      {filteredServices.map((service, index) => (
+        <div key={index}>
+          <h3>{service.category}</h3>
+          <ul>
+            {service.details.map((detail, i) => (
+              <li key={i}>{detail}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
-      <h3>3. Fumigation and Pest Control Services</h3>
-      <ul>
-        <li>Termite control</li>
-        <li>Bedbug extermination</li>
-        <li>Cockroach and ant elimination</li>
-        <li>Mosquito control</li>
-        <li>Rodent management</li>
-      </ul>
-
-      <h3>4. Car Interior Cleaning</h3>
-      <ul>
-        <li>Vacuuming: Seats, carpets, mats, and trunk</li>
-        <li>Leather treatment: Cleaning and conditioning</li>
-        <li>Dashboard and console cleaning</li>
-        <li>Odor removal: Neutralizing unpleasant smells</li>
-      </ul>
-
-      <h3>5. Dusting Services</h3>
-      <ul>
-        <li>Furniture dusting</li>
-        <li>Electronic dusting</li>
-        <li>Baseboards, frames, and window sills</li>
-        <li>Ceiling fans, vents, and lighting fixtures</li>
-      </ul>
-
-      <h3>Additional Specialized Services</h3>
-      <ul>
-        <li>Sanitization and Disinfection</li>
-        <li>Event Cleaning</li>
-        <li>External Cleaning</li>
-        <li>Move-In/Move-Out Cleaning</li>
-      </ul>
+      {filteredServices.length === 0 && (
+        <p>No services found for "{search}"</p>
+      )}
     </section>
   );
 }
