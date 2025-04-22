@@ -1,13 +1,16 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import BlogsPage from './pages/BlogsPage';
-import ContactPage from './pages/ContactPage';
-import BookNowPage from './pages/BookNowPage';
-import FloatingButton from './components/FloatingButton';
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Services from './Pages/Services';
+// import Blogs from './Pages/Blogs';
+import Contacts from './Pages/Contacts';
+// import Book-now from './Pages/Book-now';
+import FloatingButtons from './Components/FloatingButtons';
+
+
 
 function App() {
   return (
@@ -16,16 +19,16 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/book-now" element={<BookNowPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            {/* <Route path="/blogs" element={<Blogs />} /> */}
+            <Route path="/contact" element={<Contacts />} />
+            {/* <Route path="/book-now" element={<Book-now />} /> */}
           </Routes>
         </main>
         <Footer />
-        <FloatingButton />
+        <FloatingButtons />
       </div>
     </Router>
   );

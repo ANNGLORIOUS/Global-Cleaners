@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import React from 'react'; 
 
 const WhyChooseUs = () => {
   const reasons = [

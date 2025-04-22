@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Overview = () => {
   return (
     <section className="py-16 bg-background">

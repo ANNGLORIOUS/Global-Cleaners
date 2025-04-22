@@ -1,7 +1,7 @@
 import { Shield, Users, Award, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const AboutPage = () => {
+const About = () => {
   const values = [
     {
       icon: <Shield className="text-accent" size={32} />,
@@ -147,4 +147,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default About;

@@ -1,17 +1,17 @@
-// src/pages/HomePage.jsx
-import Hero from '../components/Hero';
-import Overview from '../components/Overview';
-import WhyChooseUs from '../components/WhyChooseUs';
-import { Home, Briefcase, Bug, Car, Wind } from 'lucide-react';
-import ServiceCard from '../components/ServiceCard';
+import React from 'react';
+import Hero from '../Components/Hero';
+import Overview from '../Components/Overview';
+import WhyChooseUs from '../Components/WhyChooseUs';
+import { HomeIcon, Briefcase, Bug, Car, Wind } from 'lucide-react';
+import ServiceCard from '../Components/ServiceCard';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+const Home = () => {
   const services = [
     {
       title: "Domestic Cleaning",
       description: "Creating clean, safe, and comfortable living spaces with regular or deep cleaning services.",
-      icon: <Home className="text-primary" size={24} />,
+      icon: <HomeIcon className="text-primary" size={24} />,
       link: "/services#domestic"
     },
     {
@@ -151,4 +151,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Home;

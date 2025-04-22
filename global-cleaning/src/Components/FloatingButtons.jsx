@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { MessageSquare, X } from 'lucide-react';
+import React from 'react'; 
 
-const FloatingButton = () => {
+const FloatingButtons = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -44,4 +45,4 @@ const FloatingButton = () => {
   );
 };
 
-export default FloatingButton;
+export default FloatingButtons;

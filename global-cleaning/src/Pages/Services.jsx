@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Home, Briefcase, Bug, Car, Wind, Spray, Check } from 'lucide-react';
+import { Home, Briefcase, Bug, Car, Wind, Droplets, Check  } from 'lucide-react';
 
-const ServicesPage = () => {
+const Services = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   
   const categories = [
@@ -11,7 +11,7 @@ const ServicesPage = () => {
     { id: 'fumigation', name: 'Fumigation & Pest Control', icon: <Bug size={20} /> },
     { id: 'car', name: 'Car Interior Cleaning', icon: <Car size={20} /> },
     { id: 'dusting', name: 'Dusting Services', icon: <Wind size={20} /> },
-    { id: 'specialized', name: 'Specialized Services', icon: <Spray size={20} /> }
+    { id: 'specialized', name: 'Specialized Services', icon: <Droplets size={20} /> }
   ];
   
   const services = {
@@ -335,4 +335,4 @@ const ServicesPage = () => {
   );
 };
 
-export default ServicesPage;
+export default Services;
