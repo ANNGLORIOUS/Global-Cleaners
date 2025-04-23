@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { Home, Briefcase, Bug, Car, Wind, Droplets, Check  } from 'lucide-react';
 
