@@ -1,3 +1,4 @@
+import React from 'react';
 import { Shield, Users, Award, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

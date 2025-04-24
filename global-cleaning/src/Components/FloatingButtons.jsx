@@ -30,14 +30,14 @@ const FloatingButtons = () => {
             placeholder="Your Message" 
             className="w-full mb-3 p-2 border border-muted rounded text-sm h-24 resize-none"
           ></textarea>
-          <button className="bg-primary text-white w-full py-2 rounded font-semibold hover:bg-primary/90 transition-colors">
+          <button className="bg-[blue] text-white w-full py-2 rounded font-semibold hover:bg-primary/90 transition-colors">
             Send Message
           </button>
         </div>
       )}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary/90 transition-colors"
+        className="bg-[blue] text-white p-3 rounded-full shadow-lg hover:bg-primary/90 transition-colors"
       >
         <MessageSquare size={24} />
       </button>
