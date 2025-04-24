@@ -96,36 +96,7 @@ const About = () => {
         </div>
       </section>
       
-      {/* Our Team */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 font-libre">Meet Our Team</h2>
-            <div className="h-1 w-24 bg-accent mx-auto"></div>
-            <p className="mt-6 max-w-3xl mx-auto">
-              Our team consists of dedicated professionals committed to delivering exceptional cleaning services.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {/* Team member cards would go here */}
-            {['John Doe', 'Jane Smith', 'Robert Johnson', 'Emily Williams'].map((name, index) => (
-              <div key={index} className="bg-background rounded-lg overflow-hidden shadow-md">
-                <div className="h-48 bg-primary/20 flex items-center justify-center">
-                  {/* Placeholder for team member photo */}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 text-primary/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                </div>
-                <div className="p-4 text-center">
-                  <h3 className="font-semibold text-lg">{name}</h3>
-                  <p className="text-darktext/70 text-sm">Cleaning Specialist</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
       
       {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
