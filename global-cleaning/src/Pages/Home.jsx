@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-    }, 8000); // Change slide every 8 s
+    }, 8000); // Change slide every 8 s
     return () => clearInterval(interval);
   }, []);
 
@@ -57,34 +57,34 @@ const Home = () => {
        FULL‑PAGE BACKGROUND WRAPPER
     ─────────────────────────── */
     <div
-      className="min-h-screen w-full bg-cover bg-center bg-no-repeat"
+      className="h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{ backgroundImage: `url(${bubblesImage})` }}
     >
       {/* SLIDER + NAV ARROWS + DOTS */}
-      <div className="relative">
+      <div className="relative h-full">
         {/* Slider */}
         <div
-          className="flex transition-transform duration-700 ease-in-out h-screen"
+          className="flex transition-transform duration-700 ease-in-out h-full"
           style={{ transform: `translateX(-${activeSlide * 100}%)` }}
         >
-          {/* ─── Slide 1: Hero ─── */}
-          <div className="min-w-full h-full flex items-center">
-            <div className="container mx-auto px-4">
+          {/* ─── Slide 1: Hero ─── */}
+          <div className="min-w-full h-full flex items-center overflow-y-auto">
+            <div className="container mx-auto px-4 py-16">
               <Hero />
             </div>
           </div>
 
-          {/* ─── Slide 2: Overview ─── */}
-          <div className="min-w-full h-full flex items-center">
-            <div className="container mx-auto px-4">
+          {/* ─── Slide 2: Overview ─── */}
+          <div className="min-w-full h-full flex items-center overflow-y-auto">
+            <div className="container mx-auto px-4 py-16">
               <Overview />
             </div>
           </div>
 
-          {/* ─── Slide 3: Services ─── */}
-          <div className="min-w-full h-full flex items-center">
-            <div className="container mx-auto px-4">
-              <section className="py-16">
+          {/* ─── Slide 3: Services ─── */}
+          <div className="min-w-full h-full flex items-center overflow-y-auto">
+            <div className="container mx-auto px-4 py-16">
+              <section>
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold mb-4 font-libre text-black">
                     Our Services
@@ -113,10 +113,10 @@ const Home = () => {
             </div>
           </div>
 
-          {/* ─── Slide 4: Achievements ─── */}
-          <div className="min-w-full h-full flex items-center">
-            <div className="container mx-auto px-4">
-              <section className="py-16 text-black">
+          {/* ─── Slide 4: Achievements ─── */}
+          <div className="min-w-full h-full flex items-center overflow-y-auto">
+            <div className="container mx-auto px-4 py-16">
+              <section className="text-black">
                 <div className="text-center mb-12">
                   <h2 className="text-3xl font-bold mb-4 font-libre">Our Achievements</h2>
                   <div className="h-1 w-24 bg-accent mx-auto" />
@@ -141,9 +141,9 @@ const Home = () => {
             </div>
           </div>
 
-          {/* ─── Slide 5: Why Choose Us ─── */}
-          <div className="min-w-full h-full flex items-center">
-            <div className="container mx-auto px-4">
+          {/* ─── Slide 5: Why Choose Us ─── */}
+          <div className="min-w-full h-full flex items-center overflow-y-auto">
+            <div className="container mx-auto px-4 py-16">
               <WhyChooseUs />
             </div>
           </div>
