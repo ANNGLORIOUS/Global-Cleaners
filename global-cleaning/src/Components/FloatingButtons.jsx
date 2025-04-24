@@ -37,7 +37,7 @@ const FloatingButtons = () => {
       )}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[blue] text-white p-3 rounded-full shadow-lg hover:bg-primary/90 transition-colors"
+        className="bg-[blue] text-white p-3 rounded-full shadow-lg hover:bg-[blue]/90 transition-colors"
       >
         <MessageSquare size={24} />
       </button>

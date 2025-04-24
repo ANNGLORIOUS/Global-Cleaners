@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react';
 import React from 'react'; 
+import cleaningCrew from '../assets/cleaningcrew.jpeg'; 
 
 const WhyChooseUs = () => {
   const reasons = [
@@ -22,7 +23,7 @@ const WhyChooseUs = () => {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <img 
-              src="/images/why-choose-us.jpg" 
+              src={cleaningCrew}
               alt="Professional Cleaning Team" 
               className="rounded-lg shadow-md w-full h-auto"
             />
