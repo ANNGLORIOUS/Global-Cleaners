@@ -46,12 +46,12 @@ const About = () => {
         </div>
       </div>
       
-      {/* Our Story */}
+      {/* Obout Us */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="bg-black/30 p-6 rounded-lg backdrop-blur-sm text-white">
-              <h2 className="text-3xl font-bold mb-6 font-libre">Our Story</h2>
+              <h2 className="text-3xl font-bold mb-6 font-libre">About Us</h2>
               <p className="mb-4 text-lg">
                 Global Cleaning Services was founded with a simple mission: to provide exceptional cleaning services 
                 that create healthier, more comfortable environments for our clients.
