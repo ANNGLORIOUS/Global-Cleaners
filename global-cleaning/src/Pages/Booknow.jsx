@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import lessBubbles from '../assets/lessbubbles.jpeg';
 
-const Contacts = () => {
+const Booknow = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -194,4 +194,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default Booknow;

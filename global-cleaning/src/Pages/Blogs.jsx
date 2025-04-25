@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Search, Calendar, User, Tag } from 'lucide-react';
+// import deepClean from '../assets/deepclean.jpeg'
+// import officeClean from '../assets/officeclean.jpeg'
+// import ecoClean from '../assets/ecoclean.jpeg'
+// import deepClean from '../assets/deepclean.jpeg'
+// import deepClean from '../assets/deepclean.jpeg'
 
 const Blogs = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,7 +15,7 @@ const Blogs = () => {
       id: 1,
       title: 'The Ultimate Guide to Deep Cleaning Your Home',
       excerpt: 'Learn the professional techniques for a thorough deep cleaning that will leave your home spotless and refreshed.',
-      image: '/api/placeholder/800/500',
+      image: '{deepClean}',
       category: 'Residential',
       author: 'Emma Johnson',
       date: 'April 15, 2025',

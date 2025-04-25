@@ -18,7 +18,7 @@ const Navbar = () => {
               </svg>
             </div>
             <div className="ml-2">
-              <h1 className="text-2xl font-bold font-libre">GLOBAL</h1>
+              <h1 className="text-2xl font-bold font-libre">GLOBAL CLEANING</h1>
               <p className="text-xs">Cleaning & Fumigation Services</p>
             </div>
           </Link>
@@ -34,10 +34,6 @@ const Navbar = () => {
           
           {/* Phone and Book Now */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center">
-              <Phone className="h-4 w-4 mr-2" />
-              <span>+123 456 7890</span>
-            </div>
             <Link to="/book-now" className="bg-accent hover:bg-opacity-80 text-primary font-semibold px-6 py-2 rounded transition-colors">
               Book Now
             </Link>

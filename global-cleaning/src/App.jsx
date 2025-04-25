@@ -7,7 +7,7 @@ import About from './Pages/About';
 import Services from './Pages/Services';
 import Blogs from './Pages/Blogs';
 import Contacts from './Pages/Contacts';
-// import Book-now from './Pages/Book-now';
+import Booknow from './Pages/Booknow';
 import FloatingButtons from './Components/FloatingButtons';
 
 
@@ -24,7 +24,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/contact" element={<Contacts />} />
-            {/* <Route path="/book-now" element={<Book-now />} /> */}
+            <Route path="/book-now" element={<Booknow />} />
           </Routes>
         </main>
         <Footer />
