@@ -1,10 +1,40 @@
 import React from 'react';
-import { useState } from 'react';
-import { Home, Briefcase, Bug, Car, Wind, Droplets, Check  } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Home, Briefcase, Bug, Car, Wind, Droplets, Check } from 'lucide-react';
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && categories.some(cat => cat.id === hash)) {
+        setActiveCategory(hash);
+        
+        
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            const yOffset = -80; 
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    };
+
+   
+    handleHashChange();
+    
+    
+    window.addEventListener('hashchange', handleHashChange);
+    
+ 
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const categories = [
     { id: 'all', name: 'All Services' },
     { id: 'domestic', name: 'Domestic Cleaning', icon: <Home size={20} /> },
@@ -146,10 +176,10 @@ const Services = () => {
     ]
   };
   
-  // Get services for the active category
+  
   const getFilteredServices = () => {
     if (activeCategory === 'all') {
-      // Combine all services for 'all' category
+      
       return Object.keys(services).flatMap(key => 
         services[key].map(service => ({ ...service, category: key }))
       );
@@ -159,13 +189,13 @@ const Services = () => {
   
   const filteredServices = getFilteredServices();
   
-  // Get icon for a specific category
+  
   const getCategoryIcon = (categoryId) => {
     const category = categories.find(cat => cat.id === categoryId);
     return category ? category.icon : null;
   };
   
-  // Get color class based on category
+  
   const getCategoryColorClass = (categoryId) => {
     const colorMap = {
       domestic: 'bg-blue-100 text-blue-800',
@@ -198,7 +228,24 @@ const Services = () => {
             {categories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => {
+                  setActiveCategory(category.id);
+                  // Update URL hash without page jump
+                  if (category.id !== 'all') {
+                    window.history.pushState(null, '', `#${category.id}`);
+                  } else {
+                    window.history.pushState(null, '', window.location.pathname);
+                  }
+                  // Scroll to section
+                  if (category.id !== 'all') {
+                    const element = document.getElementById(category.id);
+                    if (element) {
+                      const yOffset = -80;
+                      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                      window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                  }
+                }}
                 className={`flex items-center px-4 py-2 rounded-full transition-colors ${
                   activeCategory === category.id 
                     ? 'bg-primary text-white' 
@@ -216,16 +263,68 @@ const Services = () => {
       {/* Services List */}
       <div className="bg-background py-16">
         <div className="container mx-auto px-4">
-          {/* For non-"all" categories, show the category description */}
+          {/* All Services View */}
+          {activeCategory === 'all' && (
+            <div className="grid gap-12">
+              {Object.keys(services).map((categoryId) => (
+                <div key={categoryId} id={categoryId} className="scroll-mt-24 pt-4">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-primary/10 p-3 rounded-full mr-4">
+                      {getCategoryIcon(categoryId)}
+                    </div>
+                    <h2 className="text-3xl font-bold font-libre">{categories.find(c => c.id === categoryId)?.name}</h2>
+                  </div>
+                  
+                  <p className="text-lg text-darktext/80 mb-6">
+                    {categoryId === 'domestic' && 'We help create clean, safe, and comfortable living spaces with our comprehensive domestic cleaning services.'}
+                    {categoryId === 'commercial' && 'We provide professional cleaning services that keep workplaces healthy, welcoming, and professional.'}
+                    {categoryId === 'fumigation' && 'We offer targeted fumigation solutions to protect your property from pests using safe, effective, and eco-friendly methods.'}
+                    {categoryId === 'car' && 'Our detailed car interior cleaning service refreshes and protects your vehicle\'s cabin for a more enjoyable driving experience.'}
+                    {categoryId === 'dusting' && 'We provide thorough dusting services to eliminate dust, allergens, and pollutants from all surfaces in your home or business.'}
+                    {categoryId === 'specialized' && 'Our specialized cleaning services are designed for unique requirements and specific situations that require expert attention.'}
+                  </p>
+                  
+                  {/* Services for this category */}
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services[categoryId].map((service, index) => (
+                      <div 
+                        key={`${categoryId}-${index}`} 
+                        id={`service-${categoryId}-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                      >
+                        <div className={`h-2 ${getCategoryColorClass(categoryId).split(' ')[0]}`}></div>
+                        <div className="p-6">
+                          <div className="flex items-start mb-4">
+                            <div className={`p-2 rounded-full mr-3 ${getCategoryColorClass(categoryId)}`}>
+                              {getCategoryIcon(categoryId)}
+                            </div>
+                            <h3 className="text-xl font-semibold font-libre">{service.title}</h3>
+                          </div>
+                          <p className="text-darktext/80">{service.description}</p>
+                          <div className="mt-4 pt-4 border-t border-muted">
+                            <button className="flex items-center text-primary font-semibold hover:text-accent transition-colors">
+                              Request Service <Check size={16} className="ml-2" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {/* Single Category View */}
           {activeCategory !== 'all' && (
-            <div className="mb-12">
+            <div id={activeCategory} className="scroll-mt-24 pt-4">
               <div className="flex items-center mb-4">
                 <div className="bg-primary/10 p-3 rounded-full mr-4">
                   {getCategoryIcon(activeCategory)}
                 </div>
                 <h2 className="text-3xl font-bold font-libre">{categories.find(c => c.id === activeCategory)?.name}</h2>
               </div>
-              <p className="text-lg text-darktext/80">
+              <p className="text-lg text-darktext/80 mb-8">
                 {activeCategory === 'domestic' && 'We help create clean, safe, and comfortable living spaces with our comprehensive domestic cleaning services.'}
                 {activeCategory === 'commercial' && 'We provide professional cleaning services that keep workplaces healthy, welcoming, and professional.'}
                 {activeCategory === 'fumigation' && 'We offer targeted fumigation solutions to protect your property from pests using safe, effective, and eco-friendly methods.'}
@@ -233,35 +332,34 @@ const Services = () => {
                 {activeCategory === 'dusting' && 'We provide thorough dusting services to eliminate dust, allergens, and pollutants from all surfaces in your home or business.'}
                 {activeCategory === 'specialized' && 'Our specialized cleaning services are designed for unique requirements and specific situations that require expert attention.'}
               </p>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredServices.map((service, index) => (
+                  <div 
+                    key={index} 
+                    id={`service-${activeCategory}-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  >
+                    <div className={`h-2 ${getCategoryColorClass(service.category).split(' ')[0]}`}></div>
+                    <div className="p-6">
+                      <div className="flex items-start mb-4">
+                        <div className={`p-2 rounded-full mr-3 ${getCategoryColorClass(service.category)}`}>
+                          {getCategoryIcon(service.category)}
+                        </div>
+                        <h3 className="text-xl font-semibold font-libre">{service.title}</h3>
+                      </div>
+                      <p className="text-darktext/80">{service.description}</p>
+                      <div className="mt-4 pt-4 border-t border-muted">
+                        <button className="flex items-center text-primary font-semibold hover:text-accent transition-colors">
+                          Request Service <Check size={16} className="ml-2" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
-          
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredServices.map((service, index) => (
-              <div 
-                key={index} 
-                id={service.title.toLowerCase().replace(/\s+/g, '-')}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-              >
-                <div className={`h-2 ${getCategoryColorClass(service.category).split(' ')[0]}`}></div>
-                <div className="p-6">
-                  <div className="flex items-start mb-4">
-                    <div className={`p-2 rounded-full mr-3 ${getCategoryColorClass(service.category)}`}>
-                      {getCategoryIcon(service.category)}
-                    </div>
-                    <h3 className="text-xl font-semibold font-libre">{service.title}</h3>
-                  </div>
-                  <p className="text-darktext/80">{service.description}</p>
-                  <div className="mt-4 pt-4 border-t border-muted">
-                    <button className="flex items-center text-primary font-semibold hover:text-accent transition-colors">
-                      Request Service <Check size={16} className="ml-2" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
       
