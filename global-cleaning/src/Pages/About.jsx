@@ -81,7 +81,7 @@ const About = () => {
       {/* Our Values */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 text-white">
+          <div className="text-center mb-12 text-black">
             <h2 className="text-3xl font-bold mb-4 font-libre">Our Values</h2>
             <div className="h-1 w-24 bg-accent mx-auto"></div>
             <p className="mt-6 max-w-3xl mx-auto">
