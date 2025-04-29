@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Home, Briefcase, Bug, Car, Wind, Droplets, Check } from 'lucide-react';
+import services from '../assets/services.jpeg'
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -45,7 +46,7 @@ const Services = () => {
     { id: 'specialized', name: 'Specialized Services', icon: <Droplets size={20} /> }
   ];
   
-  const services = {
+  const servicesData = {
     domestic: [
       { 
         title: 'Regular House Cleaning', 
@@ -180,11 +181,11 @@ const Services = () => {
   const getFilteredServices = () => {
     if (activeCategory === 'all') {
       
-      return Object.keys(services).flatMap(key => 
-        services[key].map(service => ({ ...service, category: key }))
+      return Object.keys(servicesData).flatMap(key => 
+        servicesData[key].map(service => ({ ...service, category: key }))
       );
     }
-    return services[activeCategory]?.map(service => ({ ...service, category: activeCategory })) || [];
+    return servicesData[activeCategory]?.map(service => ({ ...service, category: activeCategory })) || [];
   };
   
   const filteredServices = getFilteredServices();
@@ -209,12 +210,15 @@ const Services = () => {
   };
 
   return (
-    <div>
+    <div 
+      className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat"
+      style={{ backgroundImage: `url(${services})` }}
+    >
       {/* Hero Section */}
-      <div className="bg-primary py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4 font-libre">Our Services</h1>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+      <div className="py-16">
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl font-bold text-black mb-4 font-libre drop-shadow-lg">Our Services</h1>
+          <p className="text-xl text-black max-w-3xl mx-auto drop-shadow-lg">
             Professional cleaning solutions tailored to meet the unique needs of homes, 
             businesses, and specialized environments.
           </p>
@@ -222,7 +226,7 @@ const Services = () => {
       </div>
       
       {/* Service Category Navigation */}
-      <div className="bg-background sticky top-0 z-10 shadow-md">
+      <div className="sticky top-0 z-10 backdrop-blur-md bg-black/30">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-wrap items-center justify-center gap-3">
             {categories.map((category) => (
@@ -249,7 +253,7 @@ const Services = () => {
                 className={`flex items-center px-4 py-2 rounded-full transition-colors ${
                   activeCategory === category.id 
                     ? 'bg-primary text-white' 
-                    : 'bg-white text-darktext hover:bg-primary/10'
+                    : 'bg-white/20 text-black hover:bg-white/30'
                 }`}
               >
                 {category.icon && <span className="mr-2">{category.icon}</span>}
@@ -261,21 +265,21 @@ const Services = () => {
       </div>
       
       {/* Services List */}
-      <div className="bg-background py-16">
+      <div className="py-16">
         <div className="container mx-auto px-4">
           {/* All Services View */}
           {activeCategory === 'all' && (
             <div className="grid gap-12">
-              {Object.keys(services).map((categoryId) => (
+              {Object.keys(servicesData).map((categoryId) => (
                 <div key={categoryId} id={categoryId} className="scroll-mt-24 pt-4">
                   <div className="flex items-center mb-6">
-                    <div className="bg-primary/10 p-3 rounded-full mr-4">
+                    <div className="bg-black/20 backdrop-blur-sm p-3 rounded-full mr-4">
                       {getCategoryIcon(categoryId)}
                     </div>
-                    <h2 className="text-3xl font-bold font-libre">{categories.find(c => c.id === categoryId)?.name}</h2>
+                    <h2 className="text-3xl font-bold font-libre text-black drop-shadow-lg">{categories.find(c => c.id === categoryId)?.name}</h2>
                   </div>
                   
-                  <p className="text-lg text-darktext/80 mb-6">
+                  <p className="text-lg text-black mb-6 bg-black/30 p-4 rounded-lg backdrop-blur-sm">
                     {categoryId === 'domestic' && 'We help create clean, safe, and comfortable living spaces with our comprehensive domestic cleaning services.'}
                     {categoryId === 'commercial' && 'We provide professional cleaning services that keep workplaces healthy, welcoming, and professional.'}
                     {categoryId === 'fumigation' && 'We offer targeted fumigation solutions to protect your property from pests using safe, effective, and eco-friendly methods.'}
@@ -286,11 +290,11 @@ const Services = () => {
                   
                   {/* Services for this category */}
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services[categoryId].map((service, index) => (
+                    {servicesData[categoryId].map((service, index) => (
                       <div 
                         key={`${categoryId}-${index}`} 
                         id={`service-${categoryId}-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                        className="bg-black/30 backdrop-blur-md rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                       >
                         <div className={`h-2 ${getCategoryColorClass(categoryId).split(' ')[0]}`}></div>
                         <div className="p-6">
@@ -298,11 +302,11 @@ const Services = () => {
                             <div className={`p-2 rounded-full mr-3 ${getCategoryColorClass(categoryId)}`}>
                               {getCategoryIcon(categoryId)}
                             </div>
-                            <h3 className="text-xl font-semibold font-libre">{service.title}</h3>
+                            <h3 className="text-xl font-semibold font-libre text-black">{service.title}</h3>
                           </div>
-                          <p className="text-darktext/80">{service.description}</p>
-                          <div className="mt-4 pt-4 border-t border-muted">
-                            <button className="flex items-center text-primary font-semibold hover:text-accent transition-colors">
+                          <p className="text-black/90">{service.description}</p>
+                          <div className="mt-4 pt-4 border-t border-white/20">
+                            <button className="flex items-center text-black font-semibold hover:text-accent transition-colors">
                               Request Service <Check size={16} className="ml-2" />
                             </button>
                           </div>
@@ -319,12 +323,12 @@ const Services = () => {
           {activeCategory !== 'all' && (
             <div id={activeCategory} className="scroll-mt-24 pt-4">
               <div className="flex items-center mb-4">
-                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                <div className="bg-black/20 backdrop-blur-sm p-3 rounded-full mr-4">
                   {getCategoryIcon(activeCategory)}
                 </div>
-                <h2 className="text-3xl font-bold font-libre">{categories.find(c => c.id === activeCategory)?.name}</h2>
+                <h2 className="text-3xl font-bold font-libre text-black drop-shadow-lg">{categories.find(c => c.id === activeCategory)?.name}</h2>
               </div>
-              <p className="text-lg text-darktext/80 mb-8">
+              <p className="text-lg text-black mb-8 bg-black/30 p-4 rounded-lg backdrop-blur-sm">
                 {activeCategory === 'domestic' && 'We help create clean, safe, and comfortable living spaces with our comprehensive domestic cleaning services.'}
                 {activeCategory === 'commercial' && 'We provide professional cleaning services that keep workplaces healthy, welcoming, and professional.'}
                 {activeCategory === 'fumigation' && 'We offer targeted fumigation solutions to protect your property from pests using safe, effective, and eco-friendly methods.'}
@@ -338,7 +342,7 @@ const Services = () => {
                   <div 
                     key={index} 
                     id={`service-${activeCategory}-${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    className="bg-black/30 backdrop-blur-md rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     <div className={`h-2 ${getCategoryColorClass(service.category).split(' ')[0]}`}></div>
                     <div className="p-6">
@@ -346,11 +350,11 @@ const Services = () => {
                         <div className={`p-2 rounded-full mr-3 ${getCategoryColorClass(service.category)}`}>
                           {getCategoryIcon(service.category)}
                         </div>
-                        <h3 className="text-xl font-semibold font-libre">{service.title}</h3>
+                        <h3 className="text-xl font-semibold font-libre text-black">{service.title}</h3>
                       </div>
-                      <p className="text-darktext/80">{service.description}</p>
-                      <div className="mt-4 pt-4 border-t border-muted">
-                        <button className="flex items-center text-primary font-semibold hover:text-accent transition-colors">
+                      <p className="text-black/90">{service.description}</p>
+                      <div className="mt-4 pt-4 border-t border-white/20">
+                        <button className="flex items-center text-black font-semibold hover:text-accent transition-colors">
                           Request Service <Check size={16} className="ml-2" />
                         </button>
                       </div>
@@ -364,11 +368,11 @@ const Services = () => {
       </div>
       
       {/* CTA Section */}
-      <div className="bg-primary/5 py-16">
+      <div className="py-16">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-lg shadow-md p-8 text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4 font-libre">Need a Custom Cleaning Solution?</h2>
-            <p className="text-lg mb-6">
+          <div className="bg-black/40 backdrop-blur-md rounded-lg shadow-md p-8 text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 font-libre text-black">Need a Custom Cleaning Solution?</h2>
+            <p className="text-lg mb-6 text-black/90">
               We understand that every space is unique. Contact us to discuss your specific cleaning 
               requirements and get a personalized cleaning plan.
             </p>
@@ -376,7 +380,7 @@ const Services = () => {
               <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded font-semibold transition-colors">
                 Get a Free Quote
               </button>
-              <button className="border-2 border-primary text-primary hover:bg-primary/5 px-8 py-3 rounded font-semibold transition-colors">
+              <button className="border-2 border-white text-black hover:bg-white/10 px-8 py-3 rounded font-semibold transition-colors">
                 Contact Our Team
               </button>
             </div>
@@ -385,43 +389,43 @@ const Services = () => {
       </div>
       
       {/* FAQs */}
-      <div className="bg-white py-16">
+      <div className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 font-libre">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold mb-4 font-libre text-black drop-shadow-lg">Frequently Asked Questions</h2>
             <div className="h-1 w-24 bg-accent mx-auto"></div>
           </div>
           
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
-              <div className="bg-background rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-2 font-libre">What cleaning supplies do I need to provide?</h3>
-                <p className="text-darktext/80">
+              <div className="bg-black/30 backdrop-blur-md rounded-lg p-6">
+                <h3 className="text-xl font-semibold mb-2 font-libre text-black">What cleaning supplies do I need to provide?</h3>
+                <p className="text-black/90">
                   None! We bring all necessary professional-grade cleaning supplies and equipment to every job. 
                   However, if you prefer specific products to be used in your home or business, just let us know.
                 </p>
               </div>
               
-              <div className="bg-background rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-2 font-libre">How long does a typical cleaning service take?</h3>
-                <p className="text-darktext/80">
+              <div className="bg-black/30 backdrop-blur-md rounded-lg p-6">
+                <h3 className="text-xl font-semibold mb-2 font-libre text-black">How long does a typical cleaning service take?</h3>
+                <p className="text-black/90">
                   The duration depends on the size of the space and the type of service. A standard house cleaning 
                   might take 2-4 hours, while deep cleaning services can take longer. We'll provide an estimate 
                   before beginning work.
                 </p>
               </div>
               
-              <div className="bg-background rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-2 font-libre">Are your cleaning products eco-friendly?</h3>
-                <p className="text-darktext/80">
+              <div className="bg-black/30 backdrop-blur-md rounded-lg p-6">
+                <h3 className="text-xl font-semibold mb-2 font-libre text-black">Are your cleaning products eco-friendly?</h3>
+                <p className="text-black/90">
                   Yes, we prioritize using environmentally responsible cleaning products that are effective yet safe 
                   for your family, pets, and the planet. If you have specific concerns about chemicals, please let us know.
                 </p>
               </div>
               
-              <div className="bg-background rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-2 font-libre">How do I schedule a cleaning service?</h3>
-                <p className="text-darktext/80">
+              <div className="bg-black/30 backdrop-blur-md rounded-lg p-6">
+                <h3 className="text-xl font-semibold mb-2 font-libre text-black">How do I schedule a cleaning service?</h3>
+                <p className="text-black/90">
                   You can book online through our website, call our customer service team, or use the contact form. 
                   We offer flexible scheduling options including one-time, weekly, bi-weekly, and monthly services.
                 </p>
