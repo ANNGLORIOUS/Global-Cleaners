@@ -63,7 +63,7 @@ const Booknow = () => {
                 <MapPin className="text-accent mr-4 flex-shrink-0" size={24} />
                 <div>
                   <h3 className="font-semibold text-darktext font-bai">Our Location</h3>
-                  <p className="text-gray-600 mt-1">123 Cleaning Street, Clean City, CC 12345</p>
+                  <p className="text-gray-600 mt-1">Thika Road</p>
                 </div>
               </div>
               
@@ -71,7 +71,7 @@ const Booknow = () => {
                 <Phone className="text-accent mr-4 flex-shrink-0" size={24} />
                 <div>
                   <h3 className="font-semibold text-darktext font-bai">Phone</h3>
-                  <p className="text-gray-600 mt-1">(555) 123-4567</p>
+                  <p className="text-gray-600 mt-1">(+254)716670834</p>
                 </div>
               </div>
               
@@ -79,7 +79,7 @@ const Booknow = () => {
                 <Mail className="text-accent mr-4 flex-shrink-0" size={24} />
                 <div>
                   <h3 className="font-semibold text-darktext font-bai">Email</h3>
-                  <p className="text-gray-600 mt-1">info@globalcleaningservices.com</p>
+                  <p className="text-gray-600 mt-1">maatifelix001@gmail.com</p>
                 </div>
               </div>
               
@@ -97,7 +97,7 @@ const Booknow = () => {
             <div className="mt-8 rounded-lg p-4">
               <h3 className="font-semibold text-primary font-bai">Service Areas</h3>
               <p className="text-gray-600 mt-2">
-                We proudly serve residential and commercial clients within a 50-mile radius of Clean City.
+                we provide services all over the country
               </p>
             </div>
           </div>

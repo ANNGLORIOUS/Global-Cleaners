@@ -122,10 +122,17 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/book-now" className="bg-accent hover:bg-opacity-80 text-primary font-semibold px-6 py-2 rounded transition-colors">
-              Book Now
-            </Link>
-          </div>
+          <Link 
+  to="/book-now" 
+  className="text-red-900 bg-accent hover:bg-opacity-80 font-bold px-6 py-2 rounded transition-colors"
+>
+  Book Now
+</Link>
+
+
+
+</div>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -181,7 +188,7 @@ const Navbar = () => {
               </div>
               <Link
                 to="/book-now"
-                className="bg-accent text-primary font-semibold px-4 py-2 rounded text-center mt-2"
+                className="bg-accent text-primar font-semibold px-4 py-2 rounded text-center mt-2"
                 onClick={() => setIsOpen(false)}
               >
                 Book Now
