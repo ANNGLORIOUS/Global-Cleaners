@@ -124,7 +124,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
           <Link 
   to="/book-now" 
-  className="text-red-900 bg-accent hover:bg-opacity-80 font-bold px-6 py-2 rounded transition-colors"
+  className="text-white-900 bg-accent hover:bg-opacity-80 font-bold px-6 py-2 rounded transition-colors"
 >
   Book Now
 </Link>
@@ -184,7 +184,7 @@ const Navbar = () => {
               <Link to="/contact" className="hover:text-accent" onClick={() => setIsOpen(false)}>CONTACT</Link>
               <div className="flex items-center mt-2">
                 <Phone className="h-4 w-4 mr-2 text-white font-bold" />
-                <span className="font-bold">+123 456 7890</span>
+                <span className="font-bold">0798911413/0716670834/0796715697</span>
               </div>
               <Link
                 to="/book-now"
